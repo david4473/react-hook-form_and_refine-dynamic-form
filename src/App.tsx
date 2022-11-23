@@ -13,6 +13,10 @@ import {
   ErrorComponent,
 } from "@pankod/refine-mui";
 
+import PostCreate from "pages/postCreate";
+import PostEdit from "pages/postEdit";
+import PostList from "pages/postList";
+
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -29,6 +33,14 @@ function App() {
           catchAll={<ErrorComponent />}
           routerProvider={routerProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          resources={[
+            {
+              name: "users",
+              list: PostList,
+              create: PostCreate,
+              edit: PostEdit,
+            },
+          ]}
         />
       </RefineSnackbarProvider>
     </ThemeProvider>
