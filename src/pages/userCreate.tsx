@@ -19,10 +19,9 @@ const defaultValues = {
   skills: "",
 };
 
-function PostCreate() {
+function UserCreate() {
   const {
     refineCore: { onFinish },
-    saveButtonProps,
     control,
     formState: { errors },
     handleSubmit,
@@ -45,7 +44,6 @@ function PostCreate() {
     values.skills.forEach((val: any) => {
       fieldValue.push(val.skills);
     });
-    console.log(fieldValue);
 
     onFinish({
       firstName: values.firstName,
@@ -55,21 +53,8 @@ function PostCreate() {
   };
 
   return (
-    <Create
-      saveButtonProps={saveButtonProps}
-      footerButtons={({ defaultButtons }) => (
-        <>
-          <Button
-            type="submit"
-            form="myForm"
-            style={{ backgroundColor: "#67BE23", color: "white" }}
-          >
-            Save
-          </Button>
-        </>
-      )}
-    >
-      <Box component="form" id="myForm" onSubmit={handleSubmit(onSubmit)}>
+    <Create saveButtonProps={{ onClick: handleSubmit(onSubmit) }}>
+      <Box component="form">
         <>
           <Controller
             control={control}
@@ -156,4 +141,4 @@ function PostCreate() {
   );
 }
 
-export default PostCreate;
+export default UserCreate;

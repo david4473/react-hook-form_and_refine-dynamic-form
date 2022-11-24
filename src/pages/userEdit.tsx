@@ -1,5 +1,6 @@
 import React from "react";
 import { Edit, Box, TextField, Button } from "@pankod/refine-mui";
+import DeleteIcon from "@mui/icons-material/Delete";
 import {
   useForm,
   Controller,
@@ -39,36 +40,9 @@ function PostEdit(Props: any) {
     },
   });
 
-  const onSubmit = (values: any) => {
-    let fieldValue: string[] = [];
-    values.skills.forEach((val: any) => {
-      fieldValue.push(val.skills);
-    });
-    console.log(fieldValue);
-
-    onFinish({
-      firstName: values.firstName,
-      email: values.email,
-      skills: fieldValue,
-    });
-  };
-
   return (
-    <Edit
-      saveButtonProps={saveButtonProps}
-      footerButtons={({ defaultButtons }) => (
-        <>
-          <Button
-            type="submit"
-            form="myForm"
-            style={{ backgroundColor: "#67BE23", color: "white" }}
-          >
-            Save
-          </Button>
-        </>
-      )}
-    >
-      <Box component="form" id="myForm" onSubmit={handleSubmit(onSubmit)}>
+    <Edit saveButtonProps={saveButtonProps}>
+      <Box component="form">
         <>
           <Controller
             control={control}
@@ -106,10 +80,17 @@ function PostEdit(Props: any) {
           />
           {fields.map(({ id }, index) => {
             return (
-              <Box key={id} sx={{ display: "inline-flex" }}>
+              <Box
+                key={id}
+                sx={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  marginRight: "15px",
+                }}
+              >
                 <Controller
                   control={control}
-                  name={`skills[${index}].skills`}
+                  name={`skills[${index}]`}
                   render={({ field }) => (
                     <TextField
                       {...field}
@@ -123,13 +104,12 @@ function PostEdit(Props: any) {
                     />
                   )}
                 />
-                <Button
+                <DeleteIcon
                   onClick={() => {
                     remove(index);
                   }}
-                >
-                  delete
-                </Button>
+                  sx={{ color: "red", cursor: "pointer" }}
+                />
               </Box>
             );
           })}
@@ -140,7 +120,7 @@ function PostEdit(Props: any) {
         variant="outlined"
         fullWidth
         onClick={() => {
-          append({ skills: "Javascript" });
+          append("Javascript");
         }}
       >
         Add a skill

@@ -13,9 +13,9 @@ import {
   ErrorComponent,
 } from "@pankod/refine-mui";
 
-import PostCreate from "pages/postCreate";
-import PostEdit from "pages/postEdit";
-import PostList from "pages/postList";
+import UserCreate from "pages/userCreate";
+import UserEdit from "pages/userEdit";
+import UserList from "pages/userList";
 
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -36,9 +36,9 @@ function App() {
           resources={[
             {
               name: "users",
-              list: PostList,
-              create: PostCreate,
-              edit: PostEdit,
+              list: UserList,
+              create: UserCreate,
+              edit: UserEdit,
             },
           ]}
         />

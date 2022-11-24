@@ -15,7 +15,7 @@ interface IPost {
   skills: string;
 }
 
-function PostList() {
+function UserList() {
   const { dataGridProps } = useDataGrid<IPost>();
 
   const columns = React.useMemo<GridColumns<IPost>>(
@@ -61,4 +61,4 @@ function PostList() {
   );
 }
 
-export default PostList;
+export default UserList;
